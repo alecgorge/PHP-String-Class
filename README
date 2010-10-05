@@ -1,4 +1,5 @@
-Provides an equivalent of Javascript's string class.
+Provides an equivalent of Javascript's string class. It also uses
+mbstring functions by default if you have mbstring enabled.
 
 See examples.php for extensive examples.
 

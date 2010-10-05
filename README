@@ -1,0 +1,5 @@
+Provides an equivalent of Javascript's string class.
+
+See examples.php for extensive examples.
+
+Require PHP 5.2+, but PHP 5.3 is preferred.

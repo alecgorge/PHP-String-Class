@@ -1,4 +1,5 @@
 <?php
+
 // why doesn't this function exist?
 if(!function_exists('mb_str_replace')) {
 	function mb_str_replace($search, $replace, $subject) {
@@ -47,9 +48,7 @@ class StaticString {
 		if(String::$multibyte) {
 			return new String(mb_substr($string, $start, $length, String::$multibyte_encoding));
 		}
-		else {
-			return new String(substr($string, $start, $length));
-		}
+		return new String(substr($string, $start, $length));
 	}
 
 	/**
@@ -88,18 +87,14 @@ class StaticString {
 		if(String::$multibyte) {
 			return mb_strpos($haystack, $needle, $offset, String::$multibyte_encoding);
 		}
-		else {
-			return strpos($haystack, $needle, $offset);
-		}
+		return strpos($haystack, $needle, $offset);
 	}
 
 	public static function lastIndexOf ($haystack, $needle, $offset = 0) {
 		if(String::$multibyte) {
 			return mb_strrpos($haystack, $needle, $offset, String::$multibyte_encoding);
 		}
-		else {
-			return strrpos($haystack, $needle, $offset);
-		}
+		return strrpos($haystack, $needle, $offset);
 	}
 
 	public static function match ($haystack, $regex) {
@@ -126,9 +121,7 @@ class StaticString {
 		if(String::$multibyte) {
 			return mb_strlen($string, String::$multibyte_encoding);
 		}
-		else {
-			return strlen($string);
-		}
+		return strlen($string);
 	}
 
 	public static function slice ($string, $start, $end = null) {
@@ -139,20 +132,14 @@ class StaticString {
 		if(String::$multibyte) {
 			return new String(mb_strtolower($string, String::$multibyte_encoding));
 		}
-		else {
-			return new String(strtolower($string));
-		}
-
+		return new String(strtolower($string));
 	}
 
 	public static function toUpperCase ($string) {
 		if(String::$multibyte) {
 			return new String(mb_strtoupper($string, String::$multibyte_encoding));
 		}
-		else {
-			return new STring(strtoupper($string));
-		}
-
+		return new STring(strtoupper($string));
 	}
 
 	public static function split ($string, $at = '') {
@@ -160,9 +147,7 @@ class StaticString {
 			if(String::$multibyte) {
 				return new Arr(mb_str_split($string));
 			}
-			else {
-				return new Arr(str_split($string));
-			}
+			return new Arr(str_split($string));
 		}
 		return new Arr(explode($at, $string));
 	}
@@ -170,12 +155,12 @@ class StaticString {
 	/* end static wrapper methods */
 }
 class String implements ArrayAccess {
-	private $value;
-	
-	public static $multibyte = false;
-	private static $checked = false;
 	public static $multibyte_encoding = null;
-	
+	public static $multibyte = false;
+
+	private $value;
+	private static $checked = false;
+
 	/* magic methods */
 	public function __construct ($string) {
 		if(!self::$checked) {

@@ -6,18 +6,12 @@ if(!function_exists('mb_str_replace')) {
 		return preg_replace('@'.preg_quote($search).'@u',$replace,$subject);
 	}
 }
-if(!function_exists('mb_str_split')) {
-	function mb_str_split($str, $length = 1) {
-		if ($length < 1) return FALSE;
-
-		$result = array();
-
-		for ($i = 0; $i < mb_strlen($str); $i += $length) {
-			$result[] = mb_substr($str, $i, $length);
-		}
-
-		return $result;
-	}
+if (!function_exists('mb_str_split')) {
+    function mb_str_split($str, $length = 1)
+    {
+        preg_match_all('/.{1,' . $length . '}/us', $str, $matches);
+        return $matches[0];
+    }
 }
 
 class StaticString {
